@@ -1,3 +1,4 @@
+import time
 from flexsm import StateMachine, State, Transition, addTransition
 
 root = State("root")
@@ -22,8 +23,14 @@ class Wait1Dot5Seconds(Transition):
 
 sm = StateMachine(root)
 sm.update("y", 17)
+print("Changed y to 17, current state={}".format(sm.current_state))
 sm.update("x", 19)
+print("Changed x to 19, current state={}".format(sm.current_state))
 sm.update("x", 15)
+print("Changed x to 15, current state={}".format(sm.current_state))
 sm.update("x", 14)
+print("Changed x to 14, current state={}".format(sm.current_state))
 for i in range(20):
     time.sleep(0.1)
+print("I slept two seconds, current state={}".format(sm.current_state))
+

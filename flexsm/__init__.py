@@ -85,6 +85,11 @@ class State:
     def onExit(self):
         self._onExit()
 
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
 
 class StateMachine:
     def __init__(self, root, time_resolution=0.1):
@@ -136,7 +141,7 @@ class StateMachine:
         self.watch_params = defaultdict(list)
         self.transitions = []
         for s in self.current_state:
-            for (param, transitions) in s.watch.iteritems():
+            for (param, transitions) in s.watch.items():
                 self.watch_params[param].extend(transitions)
                 self.transitions.extend(transitions)
 

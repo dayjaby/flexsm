@@ -1,11 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="flexsm",
-    version="0.0.1",
+    version="0.0.2",
     author="David Jablonski",
     author_email="dayjaby@gmail.com",
     description="A flexible state machine for Python",
