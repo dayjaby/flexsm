@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="flexsm",
-    version="0.0.4",
+    version_format="{tag}",
     author="David Jablonski",
     author_email="dayjaby@gmail.com",
     description="A flexible state machine for Python",
@@ -13,6 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/dayjaby/flexsm",
     packages=setuptools.find_packages(),
+    setup_requires=['setuptools-git-version'],
     classifiers=[
         "Programming Language :: Python",
         "License :: OSI Approved :: MIT License",
