@@ -2,18 +2,20 @@
 Installing
 **********
 
-.. highlight:: bash
-
-You can easily install flexsm with pip::
+.. code-block:: bash
 
  pip install flexsm
+
+You can easily install flexsm with pip:
+
 
 ********************************************
 Importing, creating states and state machine
 ********************************************
 
-.. highlight:: python
-Creating states and state machines is pretty straightforward::
+Creating states and state machines is pretty straightforward:
+
+.. code-block:: python
 
  from flexsm import *
  
@@ -27,7 +29,9 @@ Creating states and state machines is pretty straightforward::
 Transitions and input variables
 *******************************
 
-Transitions are responsible for getting from one state to another. They usually start in one state and end in another. If the next state is only known at runtime, e.g. if it depends on an input variable "x", then you can override the transition method *getNextState*::
+Transitions are responsible for getting from one state to another. They usually start in one state and end in another. If the next state is only known at runtime, e.g. if it depends on an input variable "x", then you can override the transition method *getNextState*:
+
+.. code-block:: python
 
  @addTransition(state=root)
  class WaitForSomeValueToBecomeSmall(Transition):
@@ -37,17 +41,23 @@ Transitions are responsible for getting from one state to another. They usually 
          else:
              return state1
 
-This piece of code allows us to transition from state *root* to *state 1* if x is smaller than 15, for example by calling:: 
+This piece of code allows us to transition from state *root* to *state 1* if x is smaller than 15, for example by calling:
+
+.. code-block:: python
 
  sm.update("x", 10)
 
 or to *state 2* if x is 15 or bigger.
 
-There is also an input variable *time_in_state*, which contains the amount of time we've been in the current state in seconds. The minimal guaranteed resolution for time_in_state is 0.1 seconds, which can be changed in the StateMachine construction::
+There is also an input variable *time_in_state*, which contains the amount of time we've been in the current state in seconds. The minimal guaranteed resolution for time_in_state is 0.1 seconds, which can be changed in the StateMachine construction:
+
+.. code-block:: python
 
  sm = StateMachine(root, time_resolution=0.01)
 
-By overriding the *check* method, we can transition if we are in the state 5 seconds or longer::
+By overriding the *check* method, we can transition if we are in the state 5 seconds or longer:
+
+.. code-block:: python
 
  @addTransition(state=state1, next=state2)
  class WaitAMoment(Transition):
@@ -67,7 +77,9 @@ Transition.check will only be called if the value of one of its parameters chang
 Parent states
 *************
 
-Consider the following example::
+Consider the following example:
+
+.. code-block:: python
 
  airbourne = State("Airbourne")
  doing360spin = State("Spin 360", parent=airbourne)

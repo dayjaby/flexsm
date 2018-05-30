@@ -2,11 +2,8 @@ import setuptools
 import re
 
 with open("README.rst", "r") as fh:
-    long_description = re.sub('^\.\. highlight.*\n?', '', fh.read(), flags=re.MULTILINE)
-
-long_description = """
-Documentation can be found on https://github.com/dayjaby/flexsm
-"""
+    # long_description = re.sub('^\.\. highlight.*\n?', '', fh.read(), flags=re.MULTILINE)
+    long_description = fh.read()
 
 setuptools.setup(
     name="flexsm",
