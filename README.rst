@@ -19,6 +19,7 @@ sm = StateMachine(root)
 ```
 
 ## Transitions and input variables
+
 Transitions are responsible for getting from one state to another. They usually start in one state and end in another. If the next state is only known at runtime, e.g. if it depends on an input variable "x", then you can override the transition method *getNextState*:
 
 ```python
@@ -56,3 +57,17 @@ class WaitAMoment(Transition):
 We also override *onTrigger*, which is called when the transition is triggered. Note how the parameters for onTrigger and check are equal. The parameters for all transition methods are name sensitive. So you can't simply use the parameter y instead of x and expect y to be 100 if you run sm.update("x", 100). For the same transition, the parameters for getNextState, check and onTrigger even have to be equal!
 
 Transition.check will only be called if the value of one of its parameters changed. Thus, if your code in the check method takes a lot of time, try to avoid frequently changing parameters like time_in_state.
+
+## Parent states
+
+Consider the following example:
+
+```python
+airbourne = State("Airbourne")
+doing360spin = State("Spin 360", parent=airbourne)
+
+sm = StateMachine(doing360spin)
+```
+
+In this case, we are not only in the state *doing360spin*, but also in the state *airbourne*. Thus, any transitions defined on *airbourne* will be considered as well. For example, an airplane could go into an emergency state if its fuel is getting low. Such emergency transitions would be interesting for all states in the air.
+
