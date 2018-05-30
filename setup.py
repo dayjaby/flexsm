@@ -1,7 +1,12 @@
 import setuptools
+import re
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+with open("README.rst", "r") as fh:
+    long_description = re.sub('^\.\. highlight.*\n?', '', fh.read(), flags=re.MULTILINE)
+
+long_description = """
+Documentation can be found on https://github.com/dayjaby/flexsm
+"""
 
 setuptools.setup(
     name="flexsm",
@@ -10,7 +15,7 @@ setuptools.setup(
     author_email="dayjaby@gmail.com",
     description="A flexible state machine for Python",
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/x-rst",
     url="https://github.com/dayjaby/flexsm",
     packages=setuptools.find_packages(),
     setup_requires=['setuptools-git-version'],
