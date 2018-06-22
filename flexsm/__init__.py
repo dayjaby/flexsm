@@ -152,6 +152,9 @@ class StateMachine:
             self.update("time_in_state", time.time() - self.state_time_entered)
 
     def update(self, param, value):
+        if isinstance(value, (bool,)):
+            if param in self.values and value == self.values[param]:
+                return
         self.values[param] = value
         self.known_params.add(param)
 
@@ -160,7 +163,6 @@ class StateMachine:
         else:
             transitions = self.watch_params[param] + self.watch_params["__any__"]
 
-        # print([s.name for s in self.current_state], {key: len(self.watch_params[key]) for key in self.watch_params.keys()})
         for t in transitions:
             params = t.watchParameters()
             if self.known_params.issuperset(params):
@@ -177,4 +179,3 @@ class StateMachine:
 
     def onChangeState(self, s):
         pass
-

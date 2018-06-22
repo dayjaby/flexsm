@@ -2,7 +2,7 @@
 Installing
 **********
 
-.. code-block:: bash
+.. code-block:: sh
 
  pip install flexsm
 
