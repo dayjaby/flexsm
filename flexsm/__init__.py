@@ -152,8 +152,9 @@ class StateMachine:
             self.update("time_in_state", time.time() - self.state_time_entered)
 
     def update(self, param, value):
-        if param in self.values and value == self.values[param]:
-            return
+        if isinstance(value, (bool,)):
+            if param in self.values and value == self.values[param]:
+                return
         self.values[param] = value
         self.known_params.add(param)
 
